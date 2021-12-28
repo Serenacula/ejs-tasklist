@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title><%=listName%> Task List</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="top-container">
+        <h1 class="title"> <%= htmlDate %>'s </h1>
+        <h1 class="title">Task List</h1>
+    </div>
+
+
+    <div class="middle-container">
+        <% if (showInput === true) { %>
+            <div class="list-div">
+        <% } else { %>
+            <div class="list-div round-bottom">
+        <%}%>
+
+        <% for (item of items) {%>
+            <form class="list-form" action="/delete" method="post">
+            <div class="item-div">
+
+                <input type="hidden" name="listName" value="<%=listName%>">
+                <input class="item-checkbox" type="checkbox" name="deleteItem" value="<%=item._id%>" onChange="this.form.submit()">
+                <p class="item-text"><%=item.text%></p>
+            </div>
+            </form>
+        <%}%>
+
+    </div>
+
+
+
+    <% if (showInput === true) {%>
+        <div class="addItem-div">
+            <form class="addItem-form" action="/<%=listName%>" method="post">
+                <input class="addItem-input" type="text" name="itemText" placeholder="New Item" autofocus="true" autocomplete="off">
+                <button class="addItem-button" type="submit" name="button">+</button>
+            </form>
+        </div>
+    <%}%>
+
+
+
+    </div>
+
+</body>
+
+</html>
