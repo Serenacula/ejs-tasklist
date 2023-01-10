@@ -94,6 +94,10 @@ app.get("/", function (request, response) {
 // GET request for custom list
 
 app.get("/:customList", function (request, response) {
+    if (request.params.customList === "favicon.ico") {
+        response.sendStatus(404)
+        return
+    }
     const customList = _.capitalize(request.params.customList)
 
     // Getting the day for the title
